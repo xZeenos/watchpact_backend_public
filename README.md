@@ -4,7 +4,7 @@
 
 > This repository is a portfolio showcase. The source code is kept private.
 
-This was my first larger scale personal project. I worked on it on and off for 4 years with a good friend who is building the Android app. The Watchpact App (currently being ported from native Java to Flutter for a cross-platform release) is very much a passion project for both of us — to learn project management and how to write production-ready code, and also something that family and friends have been asking us to make. It has real users running on it today.
+This was my first larger scale personal project. I worked on it on and off for 4 years with a good friend who is building the Android app. The Watchpact App (currently being ported from native Java to Flutter for a cross-platform release) is very much a passion project for both of us — to learn project management and how to write production-ready code, and is also something that family and friends have been asking us to make.
 
 **Website:** https://watchpact.com  
 **Google Play Store:** https://play.google.com/store/apps/details?id=com.watchpact.navdar
@@ -26,11 +26,11 @@ Features:
 
 ## Architecture
 
-I always found it kind of intimidating when peers and friends talked about all these different frameworks and I was like "huh?" — what should I use, how do I combine it, etc. I think this architecture is pretty decent for what it needs to be doing, but I am ready to be challenged on that. This project helped me grow a lot when it came to what good architecture might look like.
+I always found it kind of intimidating when peers and friends talked about all these different frameworks and found it confusing which and how to choose. I think this architecture is pretty decent for what it needs to be doing. This project helped me grow a lot when it came to what good architecture might look like.
 
 The architecture very much expanded once I got more and more into it. Now in its probably final state it's a Docker Compose based setup. There are 6 different containers running on prod and 5 when dev is running. Secret management is handled using Infisical and there is an UptimeRobot check running on the health endpoint.
 
-The basis is a Postgres DB with a Flask API (using Flask-RESTful and Flask-ApiSpec for Swagger docs) sitting in front of it, running behind Gunicorn with 18 workers in prod. Flask and Nginx communicate over a Unix socket instead of a TCP port, which felt like a cool little detail to add once I learned that was a thing. Redis handles the JWT blocklist for logouts and any caching. On top of that there is a cron-job container that runs scheduled DB maintenance, and a Restic container that does automated backups to a Backblaze B2 bucket so I don't lose everyone's data. Nginx handles SSL termination with Let's Encrypt auto-renewal baked in.
+The basis is a Postgres DB with a Flask API (using Flask-RESTful and Flask-ApiSpec for Swagger docs) sitting in front of it, running behind Gunicorn with 18 workers in prod. Flask and Nginx communicate over a Unix socket instead of a TCP port, which felt like a cool little detail to add once I learned that was a thing since it reduces network overhead. Redis handles the JWT blocklist for logouts and any caching. On top of that there is a cron-job container that runs scheduled DB maintenance, and a Restic container that does automated backups to a Backblaze B2 bucket so I don't lose everyone's data. Nginx handles SSL termination with Let's Encrypt auto-renewal baked in.
 
 Looking back I am happy with how it turned out, even if I'd do some things differently today (see Limits below).
 
@@ -59,8 +59,8 @@ For a future project I really want to switch to an even better setup using Djang
 
 ## AI Usage
 
-Towards the end of this project I started using Claude Code to help accelerate certain tasks — mainly the refactoring of a monolithic `app.py` (~3000 lines) into Flask Blueprints, adding tests and their respective mocks. The architecture, design decisions, data model, and the bulk of the code are the product of four years of iteration. I think being upfront about AI tool usage is the right thing to do, and honestly using it well — knowing what to delegate, reviewing what it produces, and integrating it into a real workflow — is its own skill worth mentioning.
+Towards the end of this project I started using Claude Code to help accelerate certain tasks — mainly the refactoring of a monolithic `app.py` (~3000 lines) into Flask Blueprints, adding tests and their respective mocks. The architecture, design decisions, data model, and the bulk of the code are the product of four years of iteration. My goal using it is very much based on challenging myself to learn how to handle the new reality developers are faced with. Knowing what to delegate, reviewing what it produces, and integrating it into a real workflow, while ensuring my own understanding and control during the development.
 
 ## Disclaimer
 
-We are in no way affiliated with TMDB and our use of their API is in no way endorsed or an endorsement of this project. We are still grateful that they provide free API access to people.
+We are in no way affiliated with TMDB and our use of their API is in no way endorsed or an endorsement of this project. 
