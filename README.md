@@ -11,6 +11,8 @@ This was my first larger scale personal project. I worked on it on and off for 4
 
 **Tech stack:** Python · Flask · PostgreSQL · Redis · Docker · Nginx · SvelteKit
 
+**Blueprint with the optimizations mentioned in the Limits section that I am using for future projects:**  https://github.com/xZeenos/webserver-template
+
 ## Purpose and features
 
 WatchPact is a backend (with a small SvelteKit frontend for a web presentation) for a media tracking app. It uses the TMDB API as a data provider.
